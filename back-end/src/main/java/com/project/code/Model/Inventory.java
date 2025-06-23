@@ -1,6 +1,9 @@
 package com.project.code.Model;
 
 import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jakarta.validation.constraints.*;
 
 @Entity
 public class Inventory {
@@ -16,7 +19,7 @@ public class Inventory {
 //    - Type: private Product
 //    - This field will represent the product associated with the inventory entry.
 //    - Use @ManyToOne to establish a many-to-one relationship with the Product entity.
-    @ManyToOne)
+    @ManyToOne
     @JsonBackReference("inventory-product")
     @JoinColumn(name = "product_id")
     private Product product;
@@ -45,7 +48,7 @@ public class Inventory {
 // 7. Create a constructor:
 //    - Add a constructor that takes a Product, Store, and Integer stockLevel to initialize the Inventory object.
     public Inventory(Product product, Store store, Integer stockLevel) {
-        this.product = product
+        this.product = product;
         this.store = store;
         this.stockLevel = stockLevel;
     }

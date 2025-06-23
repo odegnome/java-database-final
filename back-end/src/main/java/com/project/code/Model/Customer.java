@@ -1,6 +1,11 @@
 package com.project.code.Model;
 
 import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jakarta.validation.constraints.*;
+
+import java.util.List;
 
 @Entity
 public class Customer {
@@ -11,14 +16,14 @@ public class Customer {
 //    - Use @Id to mark it as the primary key and @GeneratedValue(strategy = GenerationType.IDENTITY) to auto-increment it.
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id
+    private long id;
 // 2. Add 'name' field:
 //    - Type: private String
 //    - This field cannot be empty, use the @NotNull annotation to enforce this rule.
 
     // Example: @NotNull(message = "Name cannot be null")
     @NotNull(message = "Name cannot be null")
-    private String name
+    private String name;
 // 3. Add 'email' field:
 //    - Type: private String
 //    - This field cannot be empty, use the @NotNull annotation to enforce this rule.
@@ -41,16 +46,16 @@ public class Customer {
 
     // Example: @OneToMany(mappedBy = "customer", fetch = FetchType.EAGER)
     // Example: @JsonManagedReference
-    @OneToMany(mappedBy = 'customer', fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "customer", fetch = FetchType.EAGER)
     @JsonManagedReference
-    private List<Order> orders;
+    private List<OrderDetails> orders;
 // 6. Getters and Setters:
 //    - For each field ('id', 'name', 'email', 'phone'), add getter and setter methods.
 //    - Example: public Long getId(), public void setId(Long id)
 //    - Example: public String getName(), public void setName(String name)
 //    - Add getters and setters for 'email' and 'phone' fields as well.
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
@@ -79,7 +84,7 @@ public class Customer {
     }
 
     public void setPhone(String phone) {
-        this.phone = phone
+        this.phone = phone;
     }
 
 // 7. Ensure to use proper annotations and validate constraints:

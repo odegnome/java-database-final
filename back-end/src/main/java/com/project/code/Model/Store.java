@@ -1,6 +1,11 @@
 package com.project.code.Model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import java.util.List;
 
 
 @Entity

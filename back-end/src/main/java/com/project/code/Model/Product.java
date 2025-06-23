@@ -1,6 +1,11 @@
 package com.project.code.Model;
 
 import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jakarta.validation.constraints.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "product", uniqueConstraints = @UniqueConstraint(columnNames = "sku"))
@@ -18,7 +23,7 @@ public class Product {
 //    - Type: private String
 //    - This field cannot be empty, use the @NotNull annotation to enforce this rule.
     @NotNull(message = "Name cannot be null")
-    private STring name;
+    private String name;
 // 3. Add 'category' field:
 //    - Type: private String
 //    - This field cannot be empty, use the @NotNull annotation to enforce this rule.
