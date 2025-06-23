@@ -1,6 +1,6 @@
 package com.project.code.Model;
 
-use org.springframework.annotation.*;
+import jakarta.persistence.*;
 
 @Entity
 public class Customer {
